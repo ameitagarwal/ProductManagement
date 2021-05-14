@@ -1,9 +1,8 @@
-﻿using ProductManagement.Data;
-using ProductManagement.Data.Entities;
+﻿using ProductManagement.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CategoryManagement.Data.Services
+namespace ProductManagement.Data.Services
 {
     public class CategoryRepository : ICategoryRepository
     {

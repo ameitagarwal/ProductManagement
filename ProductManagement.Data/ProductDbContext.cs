@@ -31,7 +31,7 @@ namespace ProductManagement.Data
                 entity.Property(e => e.Description).HasMaxLength(255);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 4)");
-                
+
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -41,7 +41,7 @@ namespace ProductManagement.Data
 
                 entity.Property(e => e.Description).HasMaxLength(255);
 
-                entity.Property(e => e.Name).HasMaxLength(255);                
+                entity.Property(e => e.Name).HasMaxLength(255);
 
             });
         }

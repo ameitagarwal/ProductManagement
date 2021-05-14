@@ -1,7 +1,7 @@
 ﻿using ProductManagement.Data.Entities;
 using System.Collections.Generic;
 
-namespace CategoryManagement.Data.Services
+namespace ProductManagement.Data.Services
 {
     public interface ICategoryRepository
     {

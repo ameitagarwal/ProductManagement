@@ -28,7 +28,7 @@ namespace ProductManagement.Data.Services
         {
             _context.Products.UpdateRange(products);
             return SaveChanges();
-        }        
+        }
         public bool UpdateProduct(Product product)
         {
             _context.Products.Update(product);
