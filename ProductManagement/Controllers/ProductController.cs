@@ -47,36 +47,15 @@ namespace ProductManagement.Controllers
             //IEnumerable<Product> productDto = new List<Product>();
             var productDto = _productRepository.GetAllProducts();
             var prod = _mapper.Map<List<ProductModel>>(productDto);
-            if (prod != null && prod.Count > 0)
-            {
-                return Ok(prod);
-            }
-            return NoContent();
+            return prod != null && prod.Count > 0 ? Ok(prod) : NoContent();
         }
 
-        [HttpGet("V2")]
-
-        public IActionResult GetAllProductV2()
-        {
-            //IEnumerable<Product> productDto = new List<Product>();
-            var productDto = _productRepository.GetAllProducts();
-            var prod = _mapper.Map<List<ProductModel>>(productDto);
-            if (prod != null && prod.Count > 0)
-            {
-                return Ok(prod);
-            }
-            return NoContent();
-        }
         [HttpGet("{productId}", Name = "Getproduct")]
         public IActionResult GetProductById(int productId)
         {
             var product = _productRepository.GetProductById(productId);
             var prod = _mapper.Map<ProductModel>(product);
-            if (prod is null)
-            {
-                return NoContent();
-            }
-            return Ok(prod);
+            return prod is null ? NoContent() : Ok(prod);
         }
 
         [HttpPut]
@@ -104,11 +83,7 @@ namespace ProductManagement.Controllers
         public IActionResult DeleteProduct(int productId)
         {
             var IsDeleted = _productRepository.DeleteProduct(productId);
-            if (IsDeleted)
-            {
-                return NoContent();
-            }
-            return BadRequest();
+            return IsDeleted ? NoContent() : BadRequest();
         }
     }
 }
