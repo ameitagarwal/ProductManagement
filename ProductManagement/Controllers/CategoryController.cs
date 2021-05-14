@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CategoryManagement.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using ProductManagement.Data.Entities;
+using ProductManagement.Data.Services;
 using ProductManagement.Models;
 using System.Collections.Generic;
 
@@ -37,7 +37,7 @@ namespace ProductManagement.Controllers
         public IActionResult InsertMultiple([FromBody] List<CategoryModel> categories)
         {
             var categoryEntity = _mapper.Map<List<Category>>(categories);
-            var categoryDto = _categoryRepository.AddCategoryList(categoryEntity);
+            _categoryRepository.AddCategoryList(categoryEntity);
 
             return Ok();
             //if (categoryDto)
@@ -55,11 +55,7 @@ namespace ProductManagement.Controllers
         {
             var categoryDto = _categoryRepository.GetAllCategorys();
             var category = _mapper.Map<List<CategoryModel>>(categoryDto);
-            if (category != null && category.Count > 0)
-            {
-                return Ok(category);
-            }
-            return NoContent();
+            return category != null && category.Count > 0 ? Ok(category) : NoContent();
         }
 
         [HttpGet("{categoryId}", Name = "GetCategory")]
@@ -67,11 +63,7 @@ namespace ProductManagement.Controllers
         {
             var category = _categoryRepository.GetCategoryById(categoryId);
             var cate = _mapper.Map<CategoryModel>(category);
-            if (cate is null)
-            {
-                return NoContent();
-            }
-            return Ok(cate);
+            return cate is null ? NoContent() : Ok(cate);
         }
     }
 }
