@@ -18,15 +18,31 @@ namespace ProductManagement.Data.Services
             _context.Products.Add(product);
             return SaveChanges();
         }
+
+        public bool AddProductList(List<Product> products)
+        {
+            _context.Products.AddRange(products);
+            return SaveChanges();
+        }
+        public bool UpdateProductList(List<Product> products)
+        {
+            _context.Products.UpdateRange(products);
+            return SaveChanges();
+        }        
         public bool UpdateProduct(Product product)
         {
             _context.Products.Update(product);
             return SaveChanges();
         }
-        public bool DeleteProduct(Product product)
+        public bool DeleteProduct(int productId)
         {
-            _context.Products.Remove(product);
-            return SaveChanges();
+            var product = GetProductById(productId);
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+                return SaveChanges();
+            }
+            return true;
         }
         public List<Product> GetAllProducts()
         {

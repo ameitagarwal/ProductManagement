@@ -1,15 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProductManagement.Data.Entities
+namespace ProductManagement.Models
 {
-    public class Product
+    public class ProductModel
     {
 
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string Description { get; set; }
-        public string ProductCode { get; set; }
-        public decimal Price { get; set; }
-        public Category Category { get; set; }
+        public string ProductCode1 { get; set; }
+        public decimal Amount { get; set; }
     }
 }

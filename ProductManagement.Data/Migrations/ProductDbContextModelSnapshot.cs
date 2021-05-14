@@ -56,6 +56,9 @@ namespace ProductManagement.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 4)");
 
+                    b.Property<decimal>("Price123")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("ProductCode")
                         .HasColumnType("nvarchar(max)");
 

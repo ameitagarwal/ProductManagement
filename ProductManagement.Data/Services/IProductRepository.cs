@@ -11,7 +11,7 @@ namespace ProductManagement.Data.Services
     {
         bool AddProduct(Product product);
         bool UpdateProduct(Product product);
-        bool DeleteProduct(Product product);
+        bool DeleteProduct(int productId);
         List<Product> GetAllProducts();
         Product GetProductById(int productId);
     }
