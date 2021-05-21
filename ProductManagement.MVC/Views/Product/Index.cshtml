@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ProductDto>
+<table>
+    <thead>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.ProductId)</th>
+            <th> @Html.DisplayNameFor(model => model.ProductName)</th>
+            <th> @Html.DisplayNameFor(model => model.Description)</th>
+            <th> @Html.DisplayNameFor(model => model.ProductCode)</th>
+            <th> @Html.DisplayNameFor(model => model.Price)</th>
+            <th>
+                <a asp-action="AddOrEdit" class="btn btn-outline-success"><i class="far fa-plus-square"></i>Add Product</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.ProductName</td>
+                <td>@product.Description</td>
+                <td>@product.ProductCode</td>
+                <td>@product.Price</td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@product.ProductId"><i class="fa fa-marker fa-lg"></i>Edit</a>
+                    <a asp-action="DeleteProduct" asp-route-id="@product.ProductId" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt fa-lg"></i>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
