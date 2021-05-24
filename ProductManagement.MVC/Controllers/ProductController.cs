@@ -26,9 +26,26 @@ namespace ProductManagement.MVC.Controllers
             return View(prod);
         }
 
-        [HttpPost]
-        public IActionResult AddOrEdit(ProductDto productModel)
+        [HttpGet]
+        public IActionResult AddOrEdit(int id = 0)
         {
+            if (id == 0) // Insert
+            {
+                return View();
+            }
+            else // Update
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddOrEdit(ProductDto product)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
             return View();
         }
 
