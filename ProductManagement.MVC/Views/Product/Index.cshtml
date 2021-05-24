@@ -23,7 +23,7 @@
                 <td>@product.Price</td>
                 <td>
                     <a asp-action="AddOrEdit" asp-route-id="@product.ProductId"><i class="fa fa-marker fa-lg"></i>Edit</a>
-                    <a asp-action="DeleteProduct" asp-route-id="@product.ProductId" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt fa-lg"></i>Delete</a>
+                    <a asp-action="DeleteProduct" asp-route-productId="@product.ProductId" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt fa-lg"></i>Delete</a>
                 </td>
             </tr>
         }

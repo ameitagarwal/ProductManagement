@@ -9,7 +9,7 @@
     <div class="col-md-6">
         <form asp-action="AddOrEdit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+            <input type="hidden" asp-for="@Model.ProductId" />
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label asp-for="@Model.ProductName" class="control-label"></label>
@@ -39,7 +39,7 @@
                     <input type="submit" value="Submit" class="btn btn-primary btn-block" />
                 </div>
                 <div class="form-group col-md-6">
-                    <a class="btn btn-secondary btn-block"><i class="fa fa-table"></i> Back to List</a>
+                    <a asp-action="Index" class="btn btn-secondary btn-block"><i class="fa fa-table"></i> Back to List</a>
                 </div>
             </div>
         </form>

@@ -35,7 +35,7 @@ namespace ProductManagement.MVC.Controllers
             }
             else // Update
             {
-                return View();
+                return RedirectToAction("GetProductById", new { productId = id });
             }
         }
 
@@ -44,24 +44,33 @@ namespace ProductManagement.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                var prod = _mapper.Map<Product>(product);
+                if (product.ProductId > 0)
+                {
+                    var productDto = _productRepository.UpdateProduct(prod);
+                }
+                else
+                {
+                    var productDto = _productRepository.AddProduct(prod);
+                }
+                return RedirectToAction("Index");
             }
             return View();
         }
 
-        [HttpGet("{productId}", Name = "Getproduct")]
+        [HttpGet]
         public IActionResult GetProductById(int productId)
         {
             var product = _productRepository.GetProductById(productId);
             var prod = _mapper.Map<ProductDto>(product);
-            return View(prod);
+            return View("AddOrEdit", prod);
         }
 
-        [HttpDelete("{productId}")]
+        [HttpGet]
         public IActionResult DeleteProduct(int productId)
         {
             var IsDeleted = _productRepository.DeleteProduct(productId);
-            return IsDeleted ? NoContent() : BadRequest();
+            return RedirectToAction("Index");
         }
     }
 }
