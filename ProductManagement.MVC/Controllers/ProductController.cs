@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ProductManagement.Data.Entities;
 using ProductManagement.Data.Services;
 using ProductManagement.MVC.Models;
+using System;
 using System.Collections.Generic;
 
 namespace ProductManagement.MVC.Controllers
@@ -11,19 +13,31 @@ namespace ProductManagement.MVC.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger<ProductController> _logger;
 
-        public ProductController(IProductRepository productRepository, IMapper mapper)
+        public ProductController(IProductRepository productRepository, IMapper mapper,
+            ILogger<ProductController> log)
         {
             _productRepository = productRepository;
             _mapper = mapper;
+            _logger = log;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            var productDto = _productRepository.GetAllProducts();
-            var prod = _mapper.Map<List<ProductDto>>(productDto);
-            return View(prod);
+            try
+            {
+                var productDto = _productRepository.GetAllProducts();
+                var prod = _mapper.Map<List<ProductDto>>(productDto);
+                _logger.LogInformation("Index method executed");
+                return View(prod);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error in Index method -- " + ex.Message);
+                throw;
+            }
         }
 
         [HttpGet]

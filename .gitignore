@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /ProductManagement/ProductManagement.Web/Logs
+/ProductManagement.MVC/Logs/Log-20210526.txt

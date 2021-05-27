@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using ProductManagement.Data;
 using ProductManagement.Data.Services;
 using System;
+using System.IO;
 
 namespace ProductManagement.MVC
 {
@@ -33,8 +35,12 @@ namespace ProductManagement.MVC
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            var path = Directory.GetCurrentDirectory();
+            loggerFactory.AddFile($"{path}\\Logs\\Log.txt");
+
+            app.UseExceptionMiddleware();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
