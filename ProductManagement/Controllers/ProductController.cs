@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductManagement.Data.Entities;
 using ProductManagement.Data.Services;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 namespace ProductManagement.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository;

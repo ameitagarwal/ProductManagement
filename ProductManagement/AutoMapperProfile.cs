@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ProductManagement.Data.Entities;
 using ProductManagement.Models;
+using ProductManagement.WebAPI.Models;
 
 namespace ProductManagement
 {
@@ -15,6 +16,8 @@ namespace ProductManagement
 
             CreateMap<CategoryModel, Category>()
                 .ReverseMap();
+
+            CreateMap<AuthenticateRequest, User>().ReverseMap();
         }
     }
 }
